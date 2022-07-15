@@ -5,7 +5,10 @@ import { Header , MainContainer , CreateContainer} from './components'
 
 const App = () => {
   return (
-    <div className='w-screen h-auto flex flex-col bg-primary'>
+    <AnimatePresence 
+    
+    >
+      <div className='w-screen h-auto flex flex-col bg-primary'>
         <Header />
 
         <main className='mt-24 p-8 w-full'>
@@ -15,6 +18,8 @@ const App = () => {
           </Routes>
         </main>
     </div>
+    </AnimatePresence>
+    
   )
 }
 

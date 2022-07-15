@@ -1,17 +1,49 @@
 import React from 'react'
 import Logo from './img/logo.png'
 import {TiShoppingCart} from 'react-icons/ti'
+import {MdLogout,MdAdd} from 'react-icons/md'
 import Avatar from './img/avatar.png'
+import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
+// firebase sign in with google
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { app } from '../firebase.confige'
+import { useStateValue } from '../context/StateProvider'
+import { actionType } from '../context/reducer'
 
 const Header = () => {
+
+
+  const firebaseAuth = getAuth(app)
+  const provider = new GoogleAuthProvider()
+
+  const [{user}, dispatch]= useStateValue()
+
+const login = async () => {
+   if(!user) { const {user: {refreshToken, providerData}} = await signInWithPopup(firebaseAuth,provider)
+
+   dispatch({
+     type: actionType.SET_USER,
+     user: providerData[0],
+
+   })
+
+// localStorage
+
+localStorage.setItem('user', JSON.stringify(providerData[0]))
+}
+}
+
+
+
   return (
     <div className=' fixed z-50 w-screen px-16 p-6'>
         {/* desktop-table */}
         <div className="hidden md:flex w-full items-center justify-between">
-          <div className="flex items-center  gap-2 ">
+          <Link to={'/'} className="flex items-center  gap-2 ">
             <img src={Logo} alt="logo" className=' w-8 object-cover' />
             <p className=' text-headingColor text-xl font-bold'>City</p>
-          </div>
+          </Link>
 
           <div className="flex items-center gap-8">
           <ul className='flex items-center gap-8'>
@@ -29,9 +61,30 @@ const Header = () => {
               </div>
           </div>
 
-          <img src={Avatar} alt="avatar" className='w-10 min-w-[40px] h-10
+          <div className=' relative'>
+          <motion.img 
+          whileTap={{scale: 0.6}}
+           src={user ? user.photoURL : Avatar} alt="avatar" className=' rounded-full w-10 min-w-[40px] h-10
           min-h-[40px] drop-shadow-xl cursor-pointer
-          '/>
+          '
+          onClick={login}
+          />
+
+          <div className="w-40 bg-gray-50 shadow-xl rounded-lg flex flex-col absolute top-11 right-0">
+
+
+          {
+            user && user.email === 'axausa69@gmail.com' && (
+              <p className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base'>New Items <MdAdd /></p>
+            )
+          }
+
+
+            
+            <p className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base'>Logout <MdLogout /></p>
+
+          </div>
+          </div>
 
           </div>
 
