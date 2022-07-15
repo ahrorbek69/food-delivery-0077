@@ -41,6 +41,24 @@ else {
 
 
 
+
+
+
+  const logout = () =>{
+    setIsMenu(false)
+    localStorage.clear()
+
+    dispatch({
+      type: actionType.SET_USER,
+      user: null
+    })
+  }
+
+
+
+
+
+
   return (
     <header className=' fixed z-50 w-screen p-3 px-4 md:p6 md:px-16'>
         {/* desktop-table */}
@@ -183,7 +201,9 @@ else {
             <li className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base'>Service</li>
           </ul>
       
-      <p className=' m-2 p-2 align-center rounded-md shadow-md justify-center flex items-center gap-3 cursor-pointer hover:bg-red-700 bg-red-500 transition-all duration-100 ease-in-out text-cyan-100 text-base'>Logout <MdLogout /></p>
+      <p 
+      onClick={logout}
+      className=' m-2 p-2 align-center rounded-md shadow-md justify-center flex items-center gap-3 cursor-pointer hover:bg-red-700 bg-red-500 transition-all duration-100 ease-in-out text-cyan-100 text-base'>Logout <MdLogout /></p>
 
     </motion.div>
   )
