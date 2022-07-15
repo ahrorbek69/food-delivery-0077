@@ -167,7 +167,8 @@ else {
     {
       user && user.email === 'axausa69@gmail.com' && (
         <Link  to={'/createItems'}>
-        <p className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base'>New Items <MdAdd /></p>
+        <p className='  rounded-md shadow-md  m-2 p-2 align-center justify-center  flex items-center gap-3 cursor-pointer hover:bg-lime-600 transition-all duration-100 ease-in-out
+         bg-lime-500 text-base'>New Items <MdAdd /></p>
         </Link>
       )
     }
@@ -182,7 +183,7 @@ else {
             <li className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base'>Service</li>
           </ul>
       
-      <p className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base'>Logout <MdLogout /></p>
+      <p className=' m-2 p-2 align-center rounded-md shadow-md justify-center flex items-center gap-3 cursor-pointer hover:bg-red-700 bg-red-500 transition-all duration-100 ease-in-out text-cyan-100 text-base'>Logout <MdLogout /></p>
 
     </motion.div>
   )
