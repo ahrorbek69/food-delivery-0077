@@ -1,11 +1,12 @@
 import React from 'react'
+import Logo from './img/logo.png'
 
 const Header = () => {
   return (
     <div className=' fixed z-50 w-screen bg-slate-300 px-16 p-6'>
         {/* desktop-table */}
         <div className="hidden md:flex w-full">
-          
+
         </div>
 
 
