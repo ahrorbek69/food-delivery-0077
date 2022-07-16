@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Logo from './img/logo.png'
 import { TiShoppingCart } from 'react-icons/ti'
+import { GoSearch } from 'react-icons/go'
 import { MdLogout, MdAdd } from 'react-icons/md'
 import Avatar from './img/avatar.png'
 import { motion } from 'framer-motion'
@@ -88,11 +89,11 @@ const Header = () => {
           <p className=' text-headingColor text-xl font-bold'>City</p>
         </Link>
         
-          <div className="md:absolute md:w-90 top-8 left-8 m-4 flex overflow-hidden bg-slate-200 w-40 h-8 border-orange-500 rounded-2xl border-2 gap-2">
+          <div className="md:absolute md:w-90 md:top-12 md:left-8 lg:absolute lg:w-80 lg:top-1 lg:left-36 flex overflow-hidden bg-slate-200 w-40 h-8 border-orange-500 rounded-2xl border-2 gap-2">
             <form>
               <input type="text" placeholder='Searching ...' className='ml-2 h-full w-180 outline-none border-none  bg-transparent placeholder:italic placeholder:tracking-wider placeholder:text-slate-700'/>
             </form>
-            <div className=" w-16 h-full bg-blue-600 ml-auto"></div>
+            <div className=" w-16 h-full bg-blue-600 ml-auto text-gray-50 flex items-center justify-center"><GoSearch /></div>
           </div>
 
         <div className="flex items-center gap-8">
