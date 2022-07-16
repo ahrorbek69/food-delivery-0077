@@ -68,6 +68,13 @@ else {
             <p className=' text-headingColor text-xl font-bold'>City</p>
           </Link>
 
+          <div className=" m-4 flex overflow-hidden bg-slate-200 w-40 h-8 border-orange-500 rounded-2xl border-2 gap-2">
+            <form>
+              <input type="text" placeholder='Searching ...' className='ml-2 h-full 2xl:w-656 md:w-460 bg-transparent placeholder:italic placeholder:tracking-wider placeholder:text-slate-700'/>
+            </form>
+            <div className=" w-4 h-full bg-blue-600 ml-auto"></div>
+          </div>
+
           <div className="flex items-center gap-8">
           <motion.ul
           
@@ -211,7 +218,7 @@ else {
 
 
 {
-  
+
 }
 
           </div>
