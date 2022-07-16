@@ -16,7 +16,7 @@ const App = () => {
       <div className='w-screen h-auto flex flex-col bg-primary'>
         <Header />
 
-        <main className='mt-24 p-8 w-full'>
+        <main className='mt-16 md:24 py-8 px-4 md:px-16 w-full'>
           <Routes location={location} key={location.pathname}>
             <Route path='/*' element={<MainContainer />}/>
             <Route path='/home' element={<Home />}/>

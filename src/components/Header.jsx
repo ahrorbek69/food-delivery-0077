@@ -189,14 +189,31 @@ const Header = () => {
       {/* mobile */}
 
 
+
       <div className="flex md:hidden justify-between w-full">
+
+      <div className="relative flex items-center justify-center">
+            <TiShoppingCart className='text-textColor text-2xl cursor-pointer' />
+            <div className="absolute -top-1 -right-2 w-5 h-5 rounded-full bg-cart flex items-center justify-center">
+              <p className='text-xs text-white font-semibold'>2</p>
+
+            </div>
+          </div>
+
+
+
         <Link to={'/'} className="flex items-center  gap-2 ">
           <img src={Logo} alt="logo" className=' w-8 object-cover' />
           <p className=' text-headingColor text-xl font-bold'>City</p>
         </Link>
 
 
-
+        <div className=" absolute top-16 left-6 right-6 flex overflow-hidden bg-slate-200 h-8 border-orange-500 rounded-2xl border-2 gap-2">
+            <form>
+              <input type="text" placeholder='Searching ...' className='ml-2 h-full w-180 outline-none border-none  bg-transparent placeholder:italic placeholder:tracking-wider placeholder:text-slate-700'/>
+            </form>
+            <div className=" w-16 h-full bg-blue-600 ml-auto text-gray-50 flex items-center justify-center"><GoSearch /></div>
+          </div>
 
         <div className=' relative'>
           <motion.img
