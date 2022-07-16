@@ -78,6 +78,16 @@ const Header = () => {
   ]
 
 
+  const Logout = () =>{
+    setIsMenu(false)
+    localStorage.clear()
+
+    dispatch({
+      type: actionType.SET_USER,
+      user: null
+    })
+  }
+
 
 
   return (
@@ -89,7 +99,7 @@ const Header = () => {
           <p className=' text-headingColor text-xl font-bold'>City</p>
         </Link>
         
-          <div className="md:absolute md:w-90 md:top-12 md:left-8 lg:absolute lg:w-80 lg:top-1 lg:left-36 flex overflow-hidden bg-slate-200 w-40 h-8 border-orange-500 rounded-2xl border-2 gap-2">
+          <div className="md:absolute md:w-90 md:top-12 md:left-8 lg:absolute lg:w-22 lg:top-1 lg:left-36 flex overflow-hidden bg-slate-200 w-40 h-8 border-orange-500 rounded-2xl border-2 gap-2">
             <form>
               <input type="text" placeholder='Searching ...' className='ml-2 h-full w-180 outline-none border-none  bg-transparent placeholder:italic placeholder:tracking-wider placeholder:text-slate-700'/>
             </form>
@@ -159,7 +169,7 @@ const Header = () => {
 
 
 
-                  <p className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base'>Logout <MdLogout /></p>
+                  <p onClick={Logout} className=' m-2 p-2 align-center rounded-md shadow-md justify-center flex items-center gap-3 cursor-pointer hover:bg-red-700 bg-red-500 transition-all duration-100 ease-in-out text-cyan-100 text-base'>Logout <MdLogout /></p>
 
                 </motion.div>
               )
@@ -233,7 +243,7 @@ const Header = () => {
                 </ul>
 
                 <p
-                  onClick={logout}
+                  onClick={Logout}
                   className=' m-2 p-2 align-center rounded-md shadow-md justify-center flex items-center gap-3 cursor-pointer hover:bg-red-700 bg-red-500 transition-all duration-100 ease-in-out text-cyan-100 text-base'>Logout <MdLogout /></p>
 
               </motion.div>
