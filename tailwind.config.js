@@ -57,6 +57,8 @@ module.exports = {
         textColor: "#515151",
         cart: "#e80013",
         primary: "#f5f3f3",
+        cartOverlay: "rgba(256,256,256,0.4)",
+        lightText: '#9ca0ab'
       }
       
     },

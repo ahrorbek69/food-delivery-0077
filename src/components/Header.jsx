@@ -47,15 +47,15 @@ const Header = () => {
 
 
 
-  const logout = () => {
-    setIsMenu(false)
-    localStorage.clear()
+  // const logout = () => {
+  //   setIsMenu(false)
+  //   localStorage.clear()
 
-    dispatch({
-      type: actionType.SET_USER,
-      user: null
-    })
-  }
+  //   dispatch({
+  //     type: actionType.SET_USER,
+  //     user: null
+  //   })
+  // }
 
   const menuLi = [
     {
@@ -88,10 +88,20 @@ const Header = () => {
     })
   }
 
+// scroll header
 
-
+const [scroll, setScroll] =useState(false)
+const changeScroll =()=>{
+  if(window.scrollY>=80){
+    setScroll(true)
+  }
+  else{
+    setScroll(false)
+  }
+}
+window.addEventListener('scroll', changeScroll)
   return (
-    <header className=' fixed z-50 w-screen p-3 px-4 md:p6 md:px-16'>
+    <header className={scroll ? 'active fixed z-50 w-screen h-[100px] lg:h-auto p-3 px-4 md:p6 md:px-16' : 'fixed  bg-primary shadow-sm z-50 w-screen h-[100px] lg:h-auto p-3 px-4 md:p6 md:px-16'}>
       {/* desktop-table */}
       <div className="hidden relative md:flex w-full items-center justify-between">
         <Link to={'/'} className="flex items-center  gap-2 ">
@@ -119,7 +129,7 @@ const Header = () => {
 
             {
               menuLi.map((item, index) => (
-                <NavLink className={navClass => navClass.isActive ? 'active_menu' : 'text-base text-textColor hover:text-headingcolor duration-100 transition-all ease-in-out cursor-pointer'} to={item.path} key={index}>{item.display}</NavLink>
+                <NavLink onClick={()=> setIsMenu(false)} className={navClass => navClass.isActive ? 'active_menu' : 'text-base text-textColor hover:text-headingcolor duration-100 transition-all ease-in-out cursor-pointer'} to={item.path} key={index}>{item.display}</NavLink>
               ))
             }
 
@@ -160,8 +170,8 @@ const Header = () => {
 
                   {
                     user && user.email === 'axausa69@gmail.com' && (
-                      <Link to={'/createItems'}>
-                        <p className=' rounded-md shadow-md  m-2 p-2 align-center justify-center  flex items-center gap-3 cursor-pointer hover:bg-lime-600 transition-all duration-100 ease-in-out
+                      <Link  onClick={()=> setIsMenu(false)} to={'/createItems'}>
+                        <p  className=' rounded-md shadow-md  m-2 p-2 align-center justify-center  flex items-center gap-3 cursor-pointer hover:bg-lime-600 transition-all duration-100 ease-in-out
          bg-lime-500 text-base'>New Items <MdAdd /></p>
                       </Link>
                     )
@@ -243,22 +253,30 @@ const Header = () => {
 
                 {
                   user && user.email === 'axausa69@gmail.com' && (
-                    <Link to={'/createItems'}>
+                    <Link onClick={()=> setIsMenu(false)} to={'/createItems'}>
                       <p className='  rounded-md shadow-md  m-2 p-2 align-center justify-center  flex items-center gap-3 cursor-pointer hover:bg-lime-600 transition-all duration-100 ease-in-out
          bg-lime-500 text-base'>New Items <MdAdd /></p>
                     </Link>
                   )
                 }
 
-                <ul
+<motion.ul
+
+initial={{ opacity: 0, x: 200 }}
+animate={{ opacity: 1, x: 0 }}
+exit={{ opacity: 0, x: 200 }}
 
 
-                  className='flex flex-col'>
-                  <li className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base'>Home</li>
-                  <li className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base'>Menu</li>
-                  <li className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base'>About Us</li>
-                  <li className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base'>Service</li>
-                </ul>
+
+className='flex flex-col'>
+
+{
+  menuLi.map((item, index) => (
+    <NavLink onClick={()=> setIsMenu(false)} className={navClass => navClass.isActive ? 'active_menu' : 'text-base text-textColor hover:text-headingcolor duration-100 transition-all ease-in-out cursor-pointer'} to={item.path} key={index}>{item.display}</NavLink>
+  ))
+}
+
+</motion.ul>
 
                 <p
                   onClick={Logout}
