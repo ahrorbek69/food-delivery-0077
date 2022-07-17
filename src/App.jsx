@@ -18,11 +18,11 @@ const App = () => {
 
         <main className='mt-16 md:24 py-8 px-4 md:px-16 w-full'>
           <Routes location={location} key={location.pathname}>
-            <Route path='/*' element={<MainContainer />}/>
+            <Route exact path='/*' element={<MainContainer />}/>
             <Route path='/home' element={<Home />}/>
             <Route path='/menu' element={<Menu />}/>
             <Route path='/about' element={<About />}/>
-            <Route path='/server' element={<Service />}/>
+            <Route path='/service' element={<Service />}/>
             <Route path='/createItems' element={<CreateContainer />}/>
           </Routes>
         </main>

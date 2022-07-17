@@ -7,10 +7,11 @@ const Service = () => {
     initial={{opacity: 0}}
     animate={{opacity: 1}}
     exit={{opacity: 0}}
-    >Service
+    >
+      <h1>Service</h1>
     
     </motion.div>
   )
 }
 
-export default Service
+export default Service;

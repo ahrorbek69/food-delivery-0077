@@ -99,7 +99,7 @@ const Header = () => {
           <p className=' text-headingColor text-xl font-bold'>City</p>
         </Link>
         
-          <div className="md:absolute md:w-90 md:top-12 md:left-8 lg:absolute lg:w-22 lg:top-1 lg:left-36 flex overflow-hidden bg-slate-200 w-40 h-8 border-orange-500 rounded-2xl border-2 gap-2">
+          <div className=" shadow-2xl md:absolute md:w-90 md:top-12 md:left-8 lg:absolute lg:w-22 lg:top-1 lg:left-36 flex overflow-hidden bg-slate-200 w-40 h-8 border-orange-500 rounded-2xl border-2 gap-2">
             <form>
               <input type="text" placeholder='Searching ...' className='ml-2 h-full w-180 outline-none border-none  bg-transparent placeholder:italic placeholder:tracking-wider placeholder:text-slate-700'/>
             </form>
@@ -161,7 +161,8 @@ const Header = () => {
                   {
                     user && user.email === 'axausa69@gmail.com' && (
                       <Link to={'/createItems'}>
-                        <p className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base'>New Items <MdAdd /></p>
+                        <p className=' rounded-md shadow-md  m-2 p-2 align-center justify-center  flex items-center gap-3 cursor-pointer hover:bg-lime-600 transition-all duration-100 ease-in-out
+         bg-lime-500 text-base'>New Items <MdAdd /></p>
                       </Link>
                     )
                   }
