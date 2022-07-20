@@ -37,7 +37,7 @@ const Home = () => {
       <div className=" relative py-2 flex-1">
           <img className=' h-[620px] ml-auto w-full lg:w-auto xl:ml-auto xl:h-[650px]' src={heroBg} alt="heroBg" />
 
-          <div className=" absolute top-0 lg:left-[100px] flex items-center justify-center lg:px-40 py-4 w-full h-full gap-6 xl:gap-3 flex-wrap ">
+          <div className=" absolute top-0 xl:left-[100px] flex items-center justify-center xl:px-40 py-4 w-full h-full gap-6 xl:gap-3 flex-wrap ">
 
           {
             menuData && menuData.map((item,inx)=>(

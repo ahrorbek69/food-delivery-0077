@@ -3,8 +3,10 @@ import { Home } from '../routes'
 import {motion} from 'framer-motion'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 import RowContainer from './RowContainer'
+import {useStateValue} from '../context/StateProvider'
 
 const MainContainer = () => {
+  const [{foodItems}, dispatch] = useStateValue()
   return (
     <div className=' w-full h-auto flex flex-col items-center justify-center' >
      <Home />
@@ -22,7 +24,7 @@ const MainContainer = () => {
 
 
       </div>
-      <RowContainer flag={true} />
+      <RowContainer data={foodItems?.filter(n => n.category === "Fruit")} flag={false} />
      </section>
      </div>
   )
