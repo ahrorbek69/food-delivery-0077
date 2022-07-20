@@ -1,13 +1,32 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Routes, Route, useLocation} from 'react-router-dom'
 import{ AnimatePresence } from 'framer-motion'
 import { Header , MainContainer , CreateContainer} from './components'
 import { About, Home, Menu, Service } from './routes'
+import { useStateValue } from './context/StateProvider'
+import { getAllFoodItems } from './utils/firebaseFunctions'
+import { actionType } from './context/reducer'
 
 
 const App = () => {
 
   const location = useLocation()
+
+  const [{foodItems}, dispatch] = useStateValue()
+
+  const fetchData = async () => {
+    await getAllFoodItems().then(data => {
+      dispatch({
+        type: actionType.SET_FOOD_ITEMS,
+        foodItems: data
+      })
+    })
+  }
+
+useEffect(() => {
+  fetchData()
+} , [])
+
 
   return (
     <AnimatePresence 

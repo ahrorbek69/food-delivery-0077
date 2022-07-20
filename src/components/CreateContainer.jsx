@@ -4,7 +4,11 @@ import { motion } from 'framer-motion'
 import {MdAttachMoney,MdFoodBank,MdDelete, MdFastfood, MdCloudUpload } from 'react-icons/md'
 import { categories } from '../utils/data'
 import Loader from './Loader'
-import {getDownloadURL, ref,uploadBytesResumable} from 'firebase/storage'
+import {deleteObject, getDownloadURL, ref,uploadBytesResumable} from 'firebase/storage'
+import {storage} from '../firebase.confige' 
+import { getAllFoodItems, saveItem } from '../utils/firebaseFunctions'
+import { useStateValue } from '../context/StateProvider'
+import { actionType } from '../context/reducer'
 
 const CreateContainer = () => {
 
@@ -16,29 +20,81 @@ const CreateContainer = () => {
   const [fields, setFildes] = useState(false)
   const [alertStatus, setAlertStatus] = useState('danger')
   const [msg, setMsg] = useState(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
+
+  const [{foodItems}, dispatch] = useStateValue()
 
 
-  const saveDeteils = () => { }
+  const saveDeteils = () => { 
+    setIsLoading(true)
+    try{
+      if(( !title || !calories || !imageAssets || !price || !category )){
+        setFildes(true);
+        setMsg(' Required files can not be empty ')
+        setAlertStatus('danger')
+        setTimeout(() => {
+          setFildes(false)
+          setIsLoading(false)
+        }, 1000);
+      }else{
+        const data = {
+          id: `${Date.now()}`,
+          title: title,
+          imgUrl:imageAssets,
+          category: category,
+          calories: calories,
+          qty: 1,
+          price: price
+        }
+        saveItem(data)
+        setFildes(true);
+      setMsg('Data uploaded successfully')
+      clearData()
+      setAlertStatus('success')
+      setTimeout(() => {
+        setFildes(false)
+      }, 1000);
+      }
+    }catch(error){
+      console.log(error);
+      setFildes(true);
+      setMsg('Error while uploading : Try Again ')
+      setAlertStatus('danger')
+      setTimeout(() => {
+        setFildes(false)
+        setIsLoading(false)
+      }, 1000);
+    }
+   }
+
+
+
+
+
+
+
+
+
   const uploadImage = (e) => { 
     setIsLoading(true)
     const imageFile = e.target.files[0]
-    const storageRef = ref(Storage, `Image/${Date.now()}-${imageFile.name}`)
+    const storageRef = ref(storage, `Image/${Date.now()}-${imageFile.name}`)
     const uploadTask = uploadBytesResumable(storageRef,imageFile)
 
     uploadTask.on('state_change', (snapshot) => {
       const uploadProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
     } ,(error) => {
       console.log(error);
-      setFildes(true)
+      setFildes(true);
       setMsg('Error while uploading : Try Again ')
       setAlertStatus('danger')
       setTimeout(() => {
         setFildes(false)
-        setIsLoading(false)
-      }, 4000);
-    } ,() => {
-      getDownloadURL(uploadTask.snapshot.ref).then(downloadURL => {
+        setIsLoading(true)
+      }, 1000);
+    } ,
+    () => {
+      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
         setImageAssets(downloadURL)
         setIsLoading(false)
         setFildes(true)
@@ -46,13 +102,60 @@ const CreateContainer = () => {
         setAlertStatus('success')
         setTimeout(() => {
           setFildes(false)
-        }, 4000);
+        }, 1000);
       })
     })
 
     console.log(imageFile);
    }
-  const deleteImage = () => { }
+
+
+
+
+
+
+
+
+
+  const deleteImage = () => { 
+    setIsLoading(true)
+    const deleteRef = ref(storage, imageAssets)
+    deleteObject(deleteRef).then(()=>{
+      setImageAssets(null)
+      setIsLoading(false)
+      setFildes(true)
+      setMsg('Image deleted successfully ')
+      setAlertStatus("success")
+      setTimeout(() => {
+        setFildes(false)
+      }, 2000);
+    })
+   }
+
+
+
+
+
+   const clearData = () => {
+    setTitle('')
+    setImageAssets(null)
+    setCalories('')
+    setPrice('')
+    setCategory('Select category')
+
+   }
+
+
+
+
+   const fetchData = async () => {
+    await getAllFoodItems().then(data => {
+      dispatch({
+        type: actionType.SET_FOOD_ITEMS,
+        foodItems: data
+      })
+    })
+  }
 
 
   return (
@@ -72,7 +175,7 @@ const CreateContainer = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
 
-              className={` text-lg  font-semibold w-full p-2 rounded-lg text-center ${alertStatus === 'danger' ? "bg-red-400" : 'bg-emerald-800'}`}>
+              className={` text-lg  font-semibold w-full p-2 rounded-lg text-center ${alertStatus === 'danger' ? "bg-red-400 text-textColor" : 'bg-emerald-400 text-textColor'}`}>
               {
                 msg
               }
