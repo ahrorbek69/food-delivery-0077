@@ -200,13 +200,13 @@ const CreateContainer = () => {
 
 
         <div className="w-full">
-          <select className=' outline-none  w-full text-base border-b bg-gray-200 p-2 rounded-md cursor-pointer' onChange={(e) => setCategory(e.target.value)}>
+          <select onChange={(e) => setCategory(e.target.value)} className=' outline-none  w-full text-base border-b bg-gray-200 p-2 rounded-md cursor-pointer'>
             <option value="other" className=' text-base border-0 outline-none capitalize text-headingColor bg-white'>
               Select Category
             </option>
             {
               categories && categories.map((item, inx) => (
-                <option key={inx} value={item.imgUrl} className=' text-base border-0 outline-none capitalize text-headingColor bg-white'>
+                <option   key={inx} value={item.imgUrl} className=' text-base border-0 outline-none capitalize text-headingColor bg-white'>
                   {item.name}
                 </option>
               ))
