@@ -34,7 +34,7 @@ const Header = () => {
       })
 
       // localStorage
-
+      
       localStorage.setItem('user', JSON.stringify(providerData[0]))
     }
     else {

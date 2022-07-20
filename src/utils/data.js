@@ -29,3 +29,21 @@ export const menuData = [
         imgUrl: fi1
     },
 ]
+export const categories = [
+{
+        name: 'Icecream',
+        imgUrl: i1
+    },
+    {
+        name: 'Straberry',
+        mgUrl: f1
+    },
+    {
+        name: 'Kebab',
+        imgUrl: c3
+    },
+    {
+        name: 'Fish Kebab',
+        imgUrl: fi1 
+    },
+]

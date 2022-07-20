@@ -1,0 +1,15 @@
+
+  .loader{
+    width: 70px;
+    height: 70px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px;
+    position: relative;
+  
+  }
+  .loader .square{
+    background-color: #000;
+  }
+  
