@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import {Routes, Route, useLocation} from 'react-router-dom'
 import{ AnimatePresence } from 'framer-motion'
-import { Header , MainContainer , CreateContainer} from './components'
+import { Header, Detelies , MainContainer , CreateContainer} from './components'
 import { About, Home, Menu, Service } from './routes'
 import { useStateValue } from './context/StateProvider'
 import { getAllFoodItems } from './utils/firebaseFunctions'
@@ -14,6 +14,8 @@ const App = () => {
 
   const [{foodItems}, dispatch] = useStateValue()
 
+  
+  
   const fetchData = async () => {
     await getAllFoodItems().then(data => {
       dispatch({
@@ -21,12 +23,15 @@ const App = () => {
         foodItems: data
       })
     })
+    console.log(foodItems);
   }
-
-useEffect(() => {
-  fetchData()
-} , [])
-
+  
+  useEffect(() => {
+    fetchData()
+  } , [])
+  
+  const data= foodItems
+  console.log(data);
 
   return (
     <AnimatePresence 
@@ -38,8 +43,14 @@ useEffect(() => {
         <main className='mt-16 md:24 py-8 px-4 md:px-16 w-full'>
           <Routes location={location} key={location.pathname}>
             <Route exact path='/*' element={<MainContainer />}/>
-            <Route path='/home' element={<Home />}/>
             <Route path='/menu' element={<Menu />}/>
+
+
+            <Route path={data && `detelies/:${data.id}`} element={<Detelies data={data}/>}/>
+
+
+            
+            <Route path='/home' element={<Home />}/>
             <Route path='/about' element={<About />}/>
             <Route path='/service' element={<Service />}/>
             <Route path='/createItems' element={<CreateContainer />}/>

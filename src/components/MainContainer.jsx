@@ -4,6 +4,7 @@ import {motion} from 'framer-motion'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 import RowContainer from './RowContainer'
 import {useStateValue} from '../context/StateProvider'
+import MenuContainer from './MenuContainer'
 
 const MainContainer = () => {
   const [{foodItems}, dispatch] = useStateValue()
@@ -25,12 +26,12 @@ const [scrollValue, setScrollValue] = useState(0)
       <div className='hidden md:flex gap-3 items-center'>
 
         <motion.div 
-        onClick={()=> setScrollValue(-1000)}
+        onClick={()=> setScrollValue(-10000)}
         whileTap={{scale: 0.75}} className=' transition-all duration-100 ease-in-out hover:shadow-xl w-8  h-8 rounded-lg bg-orange-300 hover:bg-orange-500 cursor-pointer flex items-center justify-center'>
           <MdChevronLeft className=' text-lg text-white' />
         </motion.div>
         <motion.div 
-        onClick={()=> setScrollValue(1000)}
+        onClick={()=> setScrollValue(10000)}
         whileTap={{scale: 0.75}} className=' transition-all duration-100 ease-in-out hover:shadow-xl w-8  h-8 rounded-lg bg-orange-300 hover:bg-orange-500 cursor-pointer flex items-center justify-center'>
           <MdChevronRight className=' text-lg text-white' />
         </motion.div>
@@ -40,9 +41,15 @@ const [scrollValue, setScrollValue] = useState(0)
 
       </div>
       <RowContainer scrollValue={scrollValue} data={foodItems?.filter(n => n.category === "Fruit")} flag={true} />
-
-
      </section>
+
+
+    
+    <MenuContainer />
+
+
+
+
      </div>
   )
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { MdShoppingBasket } from 'react-icons/md'
 import {motion} from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 const RowContainer = ({flag,data,scrollValue}) => {
   console.log(data);
@@ -8,13 +9,16 @@ const RowContainer = ({flag,data,scrollValue}) => {
   useEffect(() => {
     rowContainer.current.scrollLeft += scrollValue
   } ,[scrollValue])
+
+
+
   return (
     <>
     <div ref={rowContainer} className={ ` w-full scroll-smooth gap-3 flex items-center my-12 ${flag ? 'overflow-x-scroll scrollbar-none' : 'overflow-x-hidden flex-wrap'}`}>
        {
         data && data.map((item,inx)=>(
           
-          <div key={item.id} className=' min-w-350 hover:drop-shadow-lg bg-gray-200 rounded-lg p-2 w-300 md:w-350 my-12 backdrop-blur-lg'>
+          <Link to={`detelies/:${item.id}`} key={item.id} className=' min-w-350 hover:drop-shadow-lg bg-gray-200 rounded-lg p-2 w-300 md:w-350 my-12 backdrop-blur-lg'>
           <div className=' relative w-full flex items-center justify-between'>
               <motion.img
               whileHover={{scale: 1.2}}
@@ -39,7 +43,7 @@ const RowContainer = ({flag,data,scrollValue}) => {
         </div>
       </div>
 
-      </div>
+      </Link>
         ))
        }
     </div>

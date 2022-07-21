@@ -13,8 +13,8 @@ import { app } from '../firebase.confige'
 import { useStateValue } from '../context/StateProvider'
 import { actionType } from '../context/reducer'
 
-const Header = () => {
-
+const Header = ({data}) => {
+console.log(data);
   const [isMenu, setIsMenu] = useState(false)
 
 
