@@ -7,7 +7,7 @@ import {useStateValue} from '../context/StateProvider'
 
 const MainContainer = () => {
   const [{foodItems}, dispatch] = useStateValue()
-const [scrollValue, scroll] = useState(0)
+const [scrollValue, setScrollValue] = useState(0)
   useEffect(()=>{},[scrollValue])
 
 
@@ -25,12 +25,12 @@ const [scrollValue, scroll] = useState(0)
       <div className='hidden md:flex gap-3 items-center'>
 
         <motion.div 
-        onClick={()=> scroll(-200)}
+        onClick={()=> setScrollValue(-1000)}
         whileTap={{scale: 0.75}} className=' transition-all duration-100 ease-in-out hover:shadow-xl w-8  h-8 rounded-lg bg-orange-300 hover:bg-orange-500 cursor-pointer flex items-center justify-center'>
           <MdChevronLeft className=' text-lg text-white' />
         </motion.div>
         <motion.div 
-        onClick={()=> scroll(200)}
+        onClick={()=> setScrollValue(1000)}
         whileTap={{scale: 0.75}} className=' transition-all duration-100 ease-in-out hover:shadow-xl w-8  h-8 rounded-lg bg-orange-300 hover:bg-orange-500 cursor-pointer flex items-center justify-center'>
           <MdChevronRight className=' text-lg text-white' />
         </motion.div>

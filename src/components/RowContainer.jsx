@@ -10,10 +10,11 @@ const RowContainer = ({flag,data,scrollValue}) => {
   } ,[scrollValue])
   return (
     <>
-    <div ref={rowContainer} className={ ` scroll-smooth w-auto gap-3 flex items-center my-12 ${flag ? 'overflow-x-scroll scrollbar-none' : 'overflow-x-hidden flex-wrap'}`}>
+    <div ref={rowContainer} className={ ` w-full scroll-smooth gap-3 flex items-center my-12 ${flag ? 'overflow-x-scroll scrollbar-none' : 'overflow-x-hidden flex-wrap'}`}>
        {
         data && data.map((item,inx)=>(
-          <div key={item.id} className=' hover:drop-shadow-lg bg-gray-200 rounded-lg p-2 w-300 md:w-350 my-12 backdrop-blur-lg'>
+          
+          <div key={item.id} className=' min-w-350 hover:drop-shadow-lg bg-gray-200 rounded-lg p-2 w-300 md:w-350 my-12 backdrop-blur-lg'>
           <div className=' relative w-full flex items-center justify-between'>
               <motion.img
               whileHover={{scale: 1.2}}

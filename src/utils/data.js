@@ -6,6 +6,7 @@ import d1 from '../components/img/d1.png'
 import c6 from '../components/img/c6.png'
 import cu1 from '../components/img/cu1.png'
 
+
 export const menuData = [
     {
         name: 'Icecream',
