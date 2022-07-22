@@ -21,7 +21,7 @@ console.log(data);
   const firebaseAuth = getAuth(app)
   const provider = new GoogleAuthProvider()
 
-  const [{ user }, dispatch] = useStateValue()
+  const [{ user, cartShow,cartItems }, dispatch] = useStateValue()
 
   const login = async () => {
     if (!user) {
@@ -41,7 +41,6 @@ console.log(data);
       setIsMenu(!isMenu)
     }
   }
-
 
 
 
@@ -100,6 +99,15 @@ const changeScroll =()=>{
   }
 }
 window.addEventListener('scroll', changeScroll)
+
+
+const showCart = () => {
+  dispatch({
+    type: actionType.SET_CART_SHOW,
+    cartShow: !cartShow
+  })
+}
+
   return (
     <header className={scroll ? 'active fixed z-50 w-screen h-[100px] lg:h-auto p-3 px-4 md:p6 md:px-16' : 'fixed  bg-primary shadow-sm z-50 w-screen h-[100px] lg:h-auto p-3 px-4 md:p6 md:px-16'}>
       {/* desktop-table */}
@@ -135,12 +143,16 @@ window.addEventListener('scroll', changeScroll)
 
           </motion.ul>
 
-          <div className="relative flex items-center justify-center">
+          <div onClick={showCart} className="relative flex items-center justify-center">
             <TiShoppingCart className='text-textColor text-2xl cursor-pointer' />
-            <div className="absolute -top-3 -right-3 w-5 h-5 rounded-full bg-cart flex items-center justify-center">
-              <p className='text-xs text-white font-semibold'>2</p>
+           {
+            cartItems && cartItems.length > 0 && (
+              <div className="absolute -top-3 -right-3 w-5 h-5 rounded-full bg-cart flex items-center justify-center">
+            <p className='text-xs text-white font-semibold'>{cartItems.length}</p>
 
-            </div>
+          </div>
+            )
+           }
           </div>
 
           <div className=' relative'>
@@ -203,12 +215,16 @@ window.addEventListener('scroll', changeScroll)
 
       <div className="flex md:hidden justify-between w-full">
 
-      <div className="relative flex items-center justify-center">
+      <div onClick={showCart} className="relative flex items-center justify-center">
             <TiShoppingCart className='text-textColor text-2xl cursor-pointer' />
-            <div className="absolute -top-1 -right-2 w-5 h-5 rounded-full bg-cart flex items-center justify-center">
-              <p className='text-xs text-white font-semibold'>2</p>
+            {
+            cartItems && cartItems.length > 0 && (
+              <div className="absolute -top-3 -right-3 w-5 h-5 rounded-full bg-cart flex items-center justify-center">
+            <p className='text-xs text-white font-semibold'>{cartItems.length}</p>
 
-            </div>
+          </div>
+            )
+           }
           </div>
 
 

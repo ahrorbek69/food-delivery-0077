@@ -1,17 +1,33 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { MdShoppingBasket } from 'react-icons/md'
 import {motion} from 'framer-motion'
 import { Link } from 'react-router-dom'
 import NotFaund from './img/NotFound.svg'
+import { useStateValue } from '../context/StateProvider'
+import { actionType } from '../context/reducer'
 
 const RowContainer = ({flag,data,scrollValue}) => {
   console.log(data);
+
+
+
   const rowContainer = useRef()
   useEffect(() => {
     rowContainer.current.scrollLeft += scrollValue
   } ,[scrollValue])
 
-
+const [items, setItems] = useState([])
+  const[{cartItems} , dispatch] = useStateValue()
+  const addToCart = () => {
+    localStorage.setItem('cartItems', JSON.stringify(items))
+    dispatch({
+      type: actionType.SET_CARTITEMS,
+      cartItems: items
+    })
+  }
+  useEffect(() => {
+    addToCart()  
+  }, [items])
 
   return (
     <>
@@ -19,18 +35,25 @@ const RowContainer = ({flag,data,scrollValue}) => {
        {
         data && data.length > 0 ? data.map((item,inx)=>(
           
-          <Link to={`detelies/:${item.id}`} key={item.id} className=' min-w-350 hover:drop-shadow-lg bg-gray-200 rounded-lg p-2 w-300 md:w-350 my-12 backdrop-blur-lg'>
+          <div  key={item.id} className=' min-w-350 hover:drop-shadow-lg bg-gray-200 rounded-lg p-2 w-300 md:w-350 my-12 backdrop-blur-lg'>
           <div className=' relative w-full flex items-center justify-between'>
             <motion.div 
             whileHover={{scale: 1.2}}
             className={`drop-shadow-xl w-32 h-32 object-auto absolute -mt-4`}
             >
+
+              <Link to={`detelies/:${item.id}`}>
               
               <img
               className=' w-full h-full overscroll-contain' src={item.imageAssets} alt={item.imageAssets} />
+
+              </Link>
+
             </motion.div>
 
-              <motion.div whileHover={{scale: 0.75}} className=' w-8 h-8 rounded-full bg-red-600 ml-auto flex items-center justify-center cursor-pointer hover:shadow-md'>
+              <motion.div 
+              onClick={() => setItems([...cartItems,item])}
+              whileHover={{scale: 0.75}} className=' w-8 h-8 rounded-full bg-red-600 ml-auto flex items-center justify-center cursor-pointer hover:shadow-md'>
                 <MdShoppingBasket className=' text-white' />
               </motion.div>
           </div>
@@ -49,7 +72,7 @@ const RowContainer = ({flag,data,scrollValue}) => {
         </div>
       </div>
 
-      </Link>
+      </div>
         ))
       : 
       <div className=' w-full h-[50vh]   flex-col flex items-center justify-center'>
