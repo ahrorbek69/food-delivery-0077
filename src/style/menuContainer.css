@@ -19,3 +19,13 @@
         background-position: 0 50%;
     }
 }
+.menu_active{
+    background: linear-gradient(45deg, #f700ff, #ffc400);
+    background-size: 400% 400%;
+    animation: anim 6s infinite ease-in-out;
+}
+.menu_active:hover{
+    background: linear-gradient(45deg, #f700ff, #ffc400);
+    background-size: 400% 400%;
+    animation: anim 0.5s infinite ease-in-out;
+}

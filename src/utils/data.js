@@ -2,9 +2,7 @@ import i1 from '../components/img/i1.png'
 import f1 from '../components/img/f1.png'
 import c3 from '../components/img/c3.png'
 import fi1 from '../components/img/fi1.png'
-import d1 from '../components/img/d1.png'
-import c6 from '../components/img/c6.png'
-import cu1 from '../components/img/cu1.png'
+
 
 
 export const menuData = [
@@ -34,21 +32,17 @@ export const menuData = [
     },
 ]
 export const categories = [
+    {
+        name: 'Chicken',
+        imgUrl: 'chicken'
+    },
 {
         name: 'Icecream',
         imgUrl: 'Icecream'
     },
     {
-        name: 'Drink',
-        mgUrl:'Drink'
-    },
-    {
-        name: 'Kebab',
-        imgUrl: 'Kebab'
-    },
-    {
-        name: 'Fish Kebab',
-        imgUrl: 'Fish Kebab'
+        name: 'Fish',
+        imgUrl: 'Fish'
     },
     {
         name: 'Soup',
@@ -59,11 +53,17 @@ export const categories = [
         imgUrl:  'Energy'
     },
     {
-        name: 'Gril',
-        imgUrl: 'Gril'
+        name: 'Kebab',
+        imgUrl: 'kebab'
     },
+   
     {
         name: 'Fruit',
         imgUrl: 'Fruit'
     },
+    {
+        name: 'Juice',
+        imgUrl: 'Juice'
+    }
+    
 ]

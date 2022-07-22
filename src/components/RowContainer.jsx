@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import { MdShoppingBasket } from 'react-icons/md'
 import {motion} from 'framer-motion'
 import { Link } from 'react-router-dom'
+import NotFaund from './img/NotFound.svg'
 
 const RowContainer = ({flag,data,scrollValue}) => {
   console.log(data);
@@ -14,15 +15,20 @@ const RowContainer = ({flag,data,scrollValue}) => {
 
   return (
     <>
-    <div ref={rowContainer} className={ ` w-full scroll-smooth gap-3 flex items-center my-12 ${flag ? 'overflow-x-scroll scrollbar-none' : 'overflow-x-hidden flex-wrap'}`}>
+    <div ref={rowContainer} className={ ` w-full scroll-smooth gap-3 flex items-center justify-center my-12 ${flag ? 'overflow-x-scroll scrollbar-none' : 'overflow-x-hidden flex-wrap'}`}>
        {
-        data && data.map((item,inx)=>(
+        data && data.length > 0 ? data.map((item,inx)=>(
           
           <Link to={`detelies/:${item.id}`} key={item.id} className=' min-w-350 hover:drop-shadow-lg bg-gray-200 rounded-lg p-2 w-300 md:w-350 my-12 backdrop-blur-lg'>
           <div className=' relative w-full flex items-center justify-between'>
-              <motion.img
-              whileHover={{scale: 1.2}}
-              className=' drop-shadow-xl w-28 absolute -mt-8' src={item.imageAssets} alt={item.imageAssets} />
+            <motion.div 
+            whileHover={{scale: 1.2}}
+            className={`drop-shadow-xl w-32 h-32 object-auto absolute -mt-4`}
+            >
+              
+              <img
+              className=' w-full h-full overscroll-contain' src={item.imageAssets} alt={item.imageAssets} />
+            </motion.div>
 
               <motion.div whileHover={{scale: 0.75}} className=' w-8 h-8 rounded-full bg-red-600 ml-auto flex items-center justify-center cursor-pointer hover:shadow-md'>
                 <MdShoppingBasket className=' text-white' />
@@ -45,7 +51,12 @@ const RowContainer = ({flag,data,scrollValue}) => {
 
       </Link>
         ))
-       }
+      : 
+      <div className=' w-full h-[50vh]   flex-col flex items-center justify-center'>
+        <img className=' object-contain mb-4 overflow-hidden' src={NotFaund} alt="NotFaund" />
+        <p className='text-2xl text-orange-800 font-bold'>Not Faund Items</p>
+      </div>
+      }
     </div>
 </>
   )
