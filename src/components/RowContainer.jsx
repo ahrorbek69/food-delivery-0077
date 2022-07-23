@@ -30,22 +30,21 @@ const [items, setItems] = useState([])
   }, [items])
 
   return (
-    <>
-    <div ref={rowContainer} className={ ` w-full scroll-smooth gap-3 flex items-center justify-center my-12 ${flag ? 'overflow-x-scroll scrollbar-none' : 'overflow-x-hidden flex-wrap'}`}>
+    <div ref={rowContainer} className={ ` w-full scroll-smooth cursor-pointer gap-3 flex items-center justify-start my-12 ${flag ? 'overflow-x-scroll scrollbar-none' : 'overflow-x-hidden flex-wrap'}`}>
        {
         data && data.length > 0 ? data.map((item,inx)=>(
           
-          <div  key={item.id} className=' min-w-350 hover:drop-shadow-lg bg-gray-200 rounded-lg p-2 w-300 md:w-350 my-12 backdrop-blur-lg'>
-          <div className=' relative w-full flex items-center justify-between'>
+          <div  key={item.id} className=' hover:drop-shadow-lg bg-gray-200 rounded-lg p-2 w-300 md:w-350 min-w-350 my-12 backdrop-blur-lg'>
+          <div className=' cursor-pointer relative w-full flex items-center justify-between'>
             <motion.div 
             whileHover={{scale: 1.2}}
-            className={`drop-shadow-xl w-32 h-32 object-auto absolute -mt-4`}
+            className={`drop-shadow-xl w-32 h-auto cursor-pointer absolute -mt-4`}
             >
 
               <Link to={`detelies/:${item.id}`}>
               
               <img
-              className=' w-full h-full overscroll-contain' src={item.imageAssets} alt={item.imageAssets} />
+              className=' w-full h-full' src={item.imageAssets} alt='item.imageAssets' />
 
               </Link>
 
@@ -81,7 +80,6 @@ const [items, setItems] = useState([])
       </div>
       }
     </div>
-</>
   )
 }
 

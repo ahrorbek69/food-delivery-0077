@@ -137,7 +137,7 @@ const showCart = () => {
 
             {
               menuLi.map((item, index) => (
-                <NavLink onClick={()=> setIsMenu(false)} className={navClass => navClass.isActive ? 'active_menu' : 'text-base text-textColor hover:text-headingcolor duration-100 transition-all ease-in-out cursor-pointer'} to={item.path} key={index}>{item.display}</NavLink>
+                <NavLink key={index} onClick={()=> setIsMenu(false)} className={navClass => navClass.isActive ? 'active_menu' : 'text-base text-textColor hover:text-headingcolor duration-100 transition-all ease-in-out cursor-pointer'} to={item.path} >{item.display}</NavLink>
               ))
             }
 
@@ -288,7 +288,7 @@ className='flex flex-col'>
 
 {
   menuLi.map((item, index) => (
-    <NavLink onClick={()=> setIsMenu(false)} className={navClass => navClass.isActive ? 'active_menu' : 'text-base text-textColor hover:text-headingcolor duration-100 transition-all ease-in-out cursor-pointer'} to={item.path} key={index}>{item.display}</NavLink>
+    <NavLink key={index} onClick={()=> setIsMenu(false)} className={navClass => navClass.isActive ? 'active_menu' : 'text-base text-textColor hover:text-headingcolor duration-100 transition-all ease-in-out cursor-pointer'} to={item.path} >{item.display}</NavLink>
   ))
 }
 

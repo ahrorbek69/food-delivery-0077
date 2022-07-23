@@ -11,7 +11,7 @@ import CartItems from './CartItems'
 
 const CartContainer = () => {
     const [{cartShow,cartItems,user},dispatch] = useStateValue()
-    const [tot,setTot] = useState('')
+    const [tot,setTot] = useState([])
     const flag = []
     const showCart = () => {
         dispatch({
